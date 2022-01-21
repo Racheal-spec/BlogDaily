@@ -9,6 +9,8 @@ export const themes = createTheme({
       darkbtn: "#bb8682",
       maindark: "#0e1217",
       dark: "#1c1f26",
+      greydark: "#b3b3b3",
+      offwhite: "#d4c5c5",
     },
   },
 });

@@ -2,7 +2,7 @@ import { Grid, Modal, Box, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CREATEPOST, GETPOSTS } from "../Helpers/ApiUrl";
+import { CREATEPOST, GETPOSTS } from "../ApiUrl";
 import Card from "../Components/Card";
 import { themes } from "../Helpers/Theme";
 
@@ -18,10 +18,10 @@ const Home = () => {
       left: "50%",
       transform: "translate(-50%, -50%)",
       width: "70%",
+      height: "90%",
       backgroundColor: themes.palette.primary.white,
       boxShadow: 24,
-      padding: "30px 15px",
-      margin: "40px 0",
+      padding: "20px 15px",
     },
     textDiv: {
       display: "flex",
@@ -48,6 +48,17 @@ const Home = () => {
       cursor: "pointer",
       border: "none",
       margin: "20px 0",
+    },
+    titleDiv: {
+      display: "flex",
+      alignItem: "center",
+      justifyContent: "space-between",
+      color: themes.palette.primary.white,
+      padding: "0 14px",
+    },
+    text: {
+      fontWeight: "bold",
+      color: themes.palette.primary.offwhite,
     },
   }));
   const classes = HomeStyles();
@@ -94,7 +105,17 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <div>
-        <button onClick={handleOpen}>Create New Post</button>
+        <div className={classes.titleDiv}>
+          <div>
+            <p className={classes.text}>Popular posts from BlogDaily</p>
+          </div>
+          <div>
+            <button className={classes.buttonStyles} onClick={handleOpen}>
+              Create New Post
+            </button>
+          </div>
+        </div>
+
         <Modal open={open} onClose={handleClose}>
           <Box className={classes.modalstyle}>
             <div className={classes.textDiv}>
@@ -114,7 +135,7 @@ const Home = () => {
               <TextField
                 id="outlined-multiline-static"
                 multiline
-                rows={14}
+                rows={10}
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 defaultValue="write a post..."

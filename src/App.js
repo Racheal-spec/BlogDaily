@@ -1,11 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { useState } from "react";
@@ -27,7 +21,7 @@ function App() {
       <div className="App">
         <nav>
           <div>
-            <h3>BlogDaily</h3>
+            <h3 className="logo">BlogDaily</h3>
           </div>
           <ul>
             <li>

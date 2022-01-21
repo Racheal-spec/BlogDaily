@@ -2,6 +2,8 @@
   --main-peach: #ffc8c4;
   --white: #ffffff;
   --bgColor: #0e1217;
+  --offwhite: #d4c5c5;
+  --darkbtn: #bb8682;
 }
 .App {
   text-align: center;
@@ -18,6 +20,9 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+nav h3 {
+  color: var(--darkbtn);
+}
 nav ul {
   display: flex;
   list-style: none;
@@ -27,7 +32,16 @@ nav ul li {
   margin: 0 15px;
 }
 .navlink {
-  color: var();
+  color: var(--offwhite);
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.5s all ease-in-out;
+}
+.navlink:hover {
+  color: var(--darkbtn);
+}
+.logo {
+  color: var(--darkbtn);
 }
 
 @media (max-width: 600px) {

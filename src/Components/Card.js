@@ -13,6 +13,10 @@ const Card = ({ title, body }) => {
     },
     cardlink: {
       textDecoration: "none",
+      color: themes.palette.primary.greydark,
+    },
+    cardtitle: {
+      color: themes.palette.primary.offwhite,
     },
   }));
   const classes = CardStyles();
@@ -20,7 +24,7 @@ const Card = ({ title, body }) => {
     <div className={classes.cardwrapper}>
       <Link to="/" className={classes.cardlink}>
         <div className={classes.cardDetails}>
-          <h3>{title}</h3>
+          <h3 className={classes.cardtitle}>{title}</h3>
           <p>{body}</p>
         </div>
       </Link>
