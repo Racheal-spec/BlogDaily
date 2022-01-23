@@ -2,11 +2,12 @@ import { Grid, Modal, Box, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CREATEPOST, GETPOSTS } from "../ApiUrl";
 import Card from "../Components/Card";
 import { themes } from "../Helpers/Theme";
 
-const Home = () => {
+const Home = ({ isLogged }) => {
   const HomeStyles = makeStyles((theme) => ({
     root: {
       padding: "100px 50px",
@@ -68,6 +69,8 @@ const Home = () => {
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
 
+  let navigate = useNavigate();
+
   useEffect(() => {
     const fetchPosts = async () => {
       const getPosts = await axios.get(GETPOSTS);
@@ -79,8 +82,13 @@ const Home = () => {
   }, []);
 
   const handleOpen = () => {
-    setOpen(true);
+    if (!isLogged) {
+      navigate("/login");
+    } else {
+      setOpen(true);
+    }
   };
+
   const handleClose = () => {
     setOpen(false);
   };

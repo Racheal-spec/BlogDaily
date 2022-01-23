@@ -16,6 +16,7 @@ function App() {
       window.location.pathname = "/login";
     });
   };
+
   return (
     <Router>
       <div className="App">
@@ -42,7 +43,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/login" element={<Login setIsLogged={setIsLogged} />} />
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<Home isLogged={isLogged} />} />
         </Routes>
       </div>
     </Router>
