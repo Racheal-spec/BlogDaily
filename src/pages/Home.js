@@ -12,6 +12,9 @@ const Home = ({ isLogged }) => {
     root: {
       padding: "100px 50px",
       backgroundColor: themes.palette.primary.maindark,
+      [theme.breakpoints.down("sm")]: {
+        padding: "100px 10px",
+      },
     },
     modalstyle: {
       position: "absolute",
@@ -60,6 +63,30 @@ const Home = ({ isLogged }) => {
     text: {
       fontWeight: "bold",
       color: themes.palette.primary.offwhite,
+      [theme.breakpoints.down("sm")]: {
+        marginRight: 10,
+      },
+    },
+    created: {
+      backgroundColor: themes.palette.primary.darkbtn,
+      position: "absolute",
+      right: 5,
+      top: 7,
+      zIndex: 2,
+      borderRadius: 6,
+      padding: "10px 40px",
+      animationDuration: "3s",
+      animationName: "created",
+    },
+    "@keyframes created": {
+      from: {
+        marginLeft: "100%",
+        width: "400%",
+      },
+      to: {
+        marginLeft: "0%",
+        width: "100%",
+      },
     },
   }));
   const classes = HomeStyles();
@@ -68,6 +95,7 @@ const Home = ({ isLogged }) => {
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
+  const [created, setCreated] = useState(false);
 
   let navigate = useNavigate();
 
@@ -76,7 +104,6 @@ const Home = ({ isLogged }) => {
       const getPosts = await axios.get(GETPOSTS);
       const response = getPosts.data;
       setAllPosts(response);
-      console.log(response);
     };
     fetchPosts();
   }, []);
@@ -103,6 +130,7 @@ const Home = ({ isLogged }) => {
         let newpost = response.data;
         let newBlogPosts = [...allposts, newpost];
         setAllPosts(newBlogPosts);
+        setCreated(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -110,8 +138,18 @@ const Home = ({ isLogged }) => {
     handleClose();
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCreated(false);
+    }, 4000);
+    return () => clearTimeout(timer);
+  });
+
   return (
     <div className={classes.root}>
+      {created && (
+        <h6 className={classes.created}>A new blog post has been created.</h6>
+      )}
       <div>
         <div className={classes.titleDiv}>
           <div>
@@ -146,7 +184,7 @@ const Home = ({ isLogged }) => {
                 rows={10}
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                defaultValue="write a post..."
+                placeholder="write a post..."
                 className={classes.input}
               />
             </div>

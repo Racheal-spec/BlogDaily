@@ -42,6 +42,16 @@ nav ul li {
 }
 .logo {
   color: var(--darkbtn);
+  margin-left: 10px;
+}
+
+.logoutbtn {
+  background: transparent;
+  padding: 6px 20px;
+  border-radius: 16px;
+  border: 1px solid #bb8682;
+  color: var(--offwhite);
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
