@@ -43,6 +43,7 @@ nav ul li {
 .logo {
   color: var(--darkbtn);
   margin-left: 10px;
+  text-decoration: none;
 }
 
 .logoutbtn {

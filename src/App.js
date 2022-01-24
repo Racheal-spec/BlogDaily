@@ -7,9 +7,11 @@ import { auth } from "./Firebase-config";
 import { signOut } from "firebase/auth";
 import { ThemeProvider } from "@mui/material/styles";
 import { themes } from "./Helpers/Theme";
+import PostDetails from "./pages/PostDetails";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  let saveuser = localStorage.getItem("isLoggedin");
+  const [isLogged, setIsLogged] = useState(saveuser);
 
   const signUserOut = () => {
     signOut(auth).then(() => {
@@ -24,9 +26,9 @@ function App() {
       <Router>
         <div className="App">
           <nav>
-            <div>
-              <h3 className="logo">BlogDaily</h3>
-            </div>
+            <Link to="/" className="logo">
+              <h3>BlogDaily</h3>
+            </Link>
             <ul>
               <li>
                 <Link to="/" className="navlink">
@@ -52,6 +54,8 @@ function App() {
               element={<Login setIsLogged={setIsLogged} />}
             />
             <Route path="/" exact element={<Home isLogged={isLogged} />} />
+            <Route path="/posts" exact element={<PostDetails />} />
+            <Route path="/posts/:id" element={<PostDetails />} />
           </Routes>
         </div>
       </Router>

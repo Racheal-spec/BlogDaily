@@ -26,6 +26,10 @@ const Home = ({ isLogged }) => {
       backgroundColor: themes.palette.primary.white,
       boxShadow: 24,
       padding: "20px 15px",
+      [theme.breakpoints.down("sm")]: {
+        width: "80%",
+        height: "80%",
+      },
     },
     textDiv: {
       display: "flex",
